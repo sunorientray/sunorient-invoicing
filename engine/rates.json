@@ -1,0 +1,58 @@
+{
+  "_note": "Rate card extracted from 'KLine invoicing template.xls' and 'ECL Template'. Update here when rates change.",
+  "company": {
+    "letterhead": "letterhead.jpg",
+    "signoff": "SUN ORIENT (S) PTE LTD",
+    "dept": "Accounts Department"
+  },
+  "kline": {
+    "attn_default": "MR MALCOLM",
+    "address": ["KAWASAKI KISEN KAISHA LTD", "c/o \"K\" LINE PTE LTD", "10 Hoe Chiang Road #22-08", "Keppel South Central", "Singapore 089315"],
+    "terms": "-", "ref_no": "JL/ET", "vendor_code": "CS0081",
+    "edi": {"bill_type": "NORMALBILL", "billing_company": "SO", "gst_indicator": "Z", "gst_pct": 0, "currency": "SGD", "fx": 1},
+    "cargo_rates": {"MC": 1.10, "CV": 1.32, "HV": 1.65, "GC": 2.20},
+    "cargo_names": {"MC": "Motor Cars", "CV": "Commercial Vehicles", "HV": "Heavy Vehicles", "GC": "General Cargo"},
+    "cargo_tariff": {
+      "DIS": {"CV": ["KL-ST001","COMMERCIAL VEH (DISCHARGE)","DISCHARGE - COMMERCIAL VEHICLES"], "GC": ["KL-ST002","GENERAL CARGO (DISCHARGE)","DISCHARGE - GENERAL CARGO"], "HV": ["KL-ST003","HEAVY VEHICLE (DISCHARGE)","DISCHARGE - HEAVY VEHICLES"], "MC": ["KL-ST004","MOTOR CARS (DISCHARGE)","DISCHARGE - MOTOR CARS"]},
+      "LNR": {"CV": ["KL-ST005","COMMERCIAL VEH(LAND&RESHIP)","LAND/RESHIPPED - COMMERCIAL VEHICLES"], "GC": ["KL-ST006","GENERAL CARGO (LAND&RESHIP)","LAND/RESHIPPED - GENERAL CARGO (PKG)"], "HV": ["KL-ST007","HEAVY VEHICLE (LAND&RESHIP)","LAND/RESHIPPED - HEAVY VEHICLES"], "MC": ["KL-ST008","MOTOR CARS (LAND&RESHIP)","LAND/RESHIPPED - MOTOR CARS"]},
+      "LOD": {"CV": ["KL-ST009","COMMERCIAL VEH (LOADED)","LOADED - COMMERCIAL VEHICLES"], "GC": ["KL-ST010","GENERAL CARGO (LOADED)","LOADED - GENERAL CARGO (PKG)"], "HV": ["KL-ST011","HEAVY VEHICLE (LOADED)","LOADED - HEAVY VEHICLES"], "MC": ["KL-ST012","MOTOR CARS (LOADED)","LOADED - MOTOR CARS"]},
+      "SHF": {"MC": ["KL-ST039","MOTOR CARS (SHIFTED)","MOTOR CARS (SHIFTED)"], "CV": ["KL-ST040","COMMERCIAL VEH (SHIFTED)","COMMERCIAL VEH (SHIFTED)"], "HV": ["KL-ST041","HEAVY VEHICLES (SHIFTED)","HEAVY VEHICLES (SHIFTED)"], "GC": ["KL-ST042","GENERAL CARGO (SHIFTED)","GENERAL CARGO (SHIFTED)"]}
+    },
+    "services": {
+      "LASH_1": {"desc": "Lashing / Unlashing Gang (1st Shift)", "rate": 253, "unit": "SHIFT", "tariff": ["KL-ST013","LASHING & UNLASHING GANG 1ST SHIFT","LASHING & UNLASHING GANG - 1ST SHIFT"], "ph": true},
+      "LASH_2": {"desc": "Lashing / Unlashing Gang (2nd Shift)", "rate": 253, "unit": "SHIFT", "tariff": ["KL-ST014","LASHING & UNLASHING GANG 2ND SHIFT","LASHING & UNLASHING GANG - 2ND SHIFT"], "ph": true},
+      "LASH_3": {"desc": "Lashing / Unlashing Gang (3rd Shift)", "rate": 506, "unit": "SHIFT", "tariff": ["KL-ST015","LASHING & UNLASHING GANG 3RD SHIFT","LASHING & UNLASHING GANG - 3RD SHIFT"], "ph": true},
+      "SUP_1": {"desc": "Supervisor, Checker and Tally (1st Shift)", "rate": 275, "unit": "SHIFT", "tariff": ["KL-ST030","SUPERVISOR/CHECKER/TALLY 1ST SHIFT","SUPERVISOR/CHECKER/TALLY - 1ST SHIFT"], "ph": true},
+      "SUP_2": {"desc": "Supervisor, Checker and Tally (2nd Shift)", "rate": 275, "unit": "SHIFT", "tariff": ["KL-ST031","SUPERVISOR/CHECKER/TALLY 2ND SHIFT","SUPERVISOR/CHECKER/TALLY - 2ND SHIFT"], "ph": true},
+      "SUP_3": {"desc": "Supervisor, Checker and Tally (3rd Shift)", "rate": 550, "unit": "SHIFT", "tariff": ["KL-ST032","SUPERVISOR/CHECKER/TALLY 3RD SHIFT","SUPERVISOR/CHECKER/TALLY - 3RD SHIFT"], "ph": true},
+      "MECH": {"desc": "Mechanic", "rate": 495, "unit": "VESSEL", "tariff": ["KL-ST029","MECHANIC WORKING ONBOARD","MECHANIC WORKING ONBOARD"]},
+      "FL4_OP": {"desc": "4 Tons Forklift Operator", "rate": 88, "unit": "UNIT", "tariff": ["KL-ST026","4 TS FORKLIFT OPERATOR","4 TS FORKLIFT OPERATOR"]},
+      "LOCK": {"desc": "Locksmith", "rate": null, "unit": "UNIT", "tariff": ["KL-ST028","LOCKSMITH","LOCKSMITH"]},
+      "FL5": {"desc": "5 Tons Forklift", "rate": 220, "unit": "UNIT", "tariff": ["KL-ST017","5 TS FORKLIFT","5 TS FORKLIFT WORKING ON BOARD"]},
+      "FL7": {"desc": "7 Tons Forklift", "rate": 385, "unit": "UNIT", "tariff": ["KL-ST018","7 TS FORKLIFT","7 TS FORKLIFT WORKING ON BOARD"]},
+      "FL16": {"desc": "16 Tons Forklift", "rate": 550, "unit": "UNIT", "tariff": ["KL-ST016","16 TS FORKLIFT","16 TS FORKLIFT WORKING ON BOARD"]},
+      "FL_OP": {"desc": "Forklift Operator", "rate": 110, "unit": "UNIT", "tariff": ["KL-ST027","FORKLIFT OPERATOR","FORKLIFT OPERATOR WORKING ONBOARD"]},
+      "TM_OP": {"desc": "Tugmaster Operator", "rate": 110, "unit": "UNIT", "tariff": ["KL-ST033","TUGMASTER OPERATOR","TUGMASTER OPERATOR WORKING ONBOARD"]},
+      "TM_RENT": {"desc": "Rental of Tugmaster", "rate": 550, "unit": "UNIT", "tariff": ["KL-ST025","RENTAL OF TUG MASTER","RENTAL OF TUG MASTER"]},
+      "TRAILER": {"desc": "Trailer / Lowbed", "rate": 385, "unit": "UNIT", "tariff": ["KL-ST024","TRAILER/LOWBED","TRAILER/LOWBED"]},
+      "TOWING": {"desc": "Towing", "rate": null, "unit": "UNIT", "tariff": ["KL-ST023","TOWING","TOWING"]},
+      "DIESEL": {"desc": "Supply of Diesel", "rate": null, "unit": "LITRE", "tariff": ["KL-ST035","SUPPLY OF DIESEL","SUPPLY OF DIESEL"]},
+      "SIGNALMAN_MAFI": {"desc": "Signalman", "rate": 150, "unit": "/PC", "tariff": ["KL-ST053","SIGNALMAN MAFI STUFFING OPN","SIGNALMAN MAFI STUFFING OPN"]},
+      "KEY": {"desc": "Key Collection", "rate": null, "unit": "/PC", "tariff": ["KL-ST054","KEY COLLECTION","KEY COLLECTION"]}
+    }
+  },
+  "ecl": {
+    "address": ["ECL (SINGAPORE) PTE LTD", "150 BEACH ROAD #18-01/04", "GATEWAY WEST", "SINGAPORE 189720"],
+    "terms": "-", "ref_no": "HL/ET",
+    "cargo": {
+      "LT2": {"desc": "UNITS OF VEHICLES BELOW 2 TONNE @ $12.00 PER UNIT", "rate": 12},
+      "2TO5": {"desc": "UNITS OF VEHICLES BETWEEN 2 TONNES TO 5 TONNES @ $31.00 PER UNIT", "rate": 31},
+      "GT5": {"desc": "UNITS OF VEHICLES ABOVE 5 TONNE @ $55.00 PER UNIT", "rate": 55},
+      "GC": {"desc": "R/T OF GENERAL CARGO @ REVISED TONNAGE @ $1.70 PER R/T", "rate": 1.70}
+    },
+    "sections": {"DIS": "DISCHARGING", "LOD": "LOADING", "SHF": "SHIFTING", "LNR": "LANDING & RESHIPPING (X2)"},
+    "roles": {"SHIFTER": ["SHIFTERS", "SHIFTER"], "SIGNALLER": ["SIGNALLER", "SIGNALLER"], "RAMP": ["RAMPWAY SIGNALLER", "SIGNALLER"], "WARDEN": ["WARDEN", "WARDEN"], "LABOURER": ["LABOURERS", "LABOURER"]},
+    "shift_rate": {"1": 75, "2": 75, "3": 150},
+    "ph_rate": 150
+  }
+}
