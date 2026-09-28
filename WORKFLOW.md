@@ -26,7 +26,17 @@ Gmail labels (create if missing):
 
 ## 1. Find new work
 
-Search (exclude anything already labelled `SOInv/Processed`):
+**Current mode: forwarded emails only.** Raymond forwards relevant emails, with their attachments, to
+**`sunorientray+inv@gmail.com`**. Only look at mail delivered to that address:
+
+```
+deliveredto:sunorientray+inv@gmail.com -label:SOInv/Processed
+```
+
+A forwarded email whose attachments are missing (e.g. a message under ~20 KB with no `.xls`/`.pdf`/`.zip`)
+can't be used. Reply to Raymond asking him to forward it again with its attachments, and label it `SOInv/Processed`.
+
+What each forwarded email can be (decide from the subject, the original sender quoted in the body, and the attachments):
 
 - **K Line confirmation report / tally docs**: subject contains `Confirmation Report` or `Tally Documents`,
   from `@sunorient.com.sg` (the supervisor forwards what Ng Terminal staff send at the end of cargo ops),
@@ -54,7 +64,16 @@ Search (exclude anything already labelled `SOInv/Processed`):
    + fuel top-up sheet (if fuel was billed) + any receipts. **Never put the Ng Terminal invoice in the stack.**
 7. **Check against Ng Terminal**: once its invoice is in, compare quantities line by line (Ng Terminal's unit prices
    differ from ours, so compare quantities only). If it hasn't arrived, label the thread `SOInv/AwaitingNT` and check again next run.
-8. Email **raymond@sunorient.com.sg**: stack + EDI CSV + Ng Terminal invoice, with the checks summarised.
+8. Email **raymond@sunorient.com.sg** (see "Attachments" below) with the checks summarised.
+
+## Attachments
+
+The Gmail connector needs each attachment's full contents passed through the model, so keep attachments small:
+
+- **Attach**: the invoice PDF (~55 KB) and the EDI CSV (~6 KB).
+- **Don't re-attach** scans such as the signed report, tally docs or Ng Terminal invoice. Send the approval email as a
+  **reply on the forwarded thread**, so the originals are right there. Name each file in the email.
+- **Full stack PDF**: commit it to this repo under `outputs/<invoice no>/` and put the GitHub link in the email.
 
 ## 3. ECL
 
