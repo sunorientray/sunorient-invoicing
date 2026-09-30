@@ -1,0 +1,14 @@
+{
+  "_note": "Rules the mail watcher uses to decide which emails to save for invoicing. First matching rule wins. Regexes are case-insensitive. 'subject' is matched after stripping Fwd:/Fw:/Re: prefixes.",
+  "rules": [
+    {"category": "skip_otp",        "from": "IMS-Admin@klpl", "subject": "One-Time Password", "save": false},
+    {"category": "kline_report",    "subject": "Confirmation Report|Tally Document"},
+    {"category": "nt_invoice",      "from": "ngterminal\\.com\\.sg", "attachment": "\\.pdf$"},
+    {"category": "nt_invoice",      "body": "Ng Terminal", "attachment": "NT.?0\\d{3}|TAX.?INVOICE|INV"},
+    {"category": "ecl_job",         "from": "services\\.and|andy", "attachment": "\\.pdf$"},
+    {"category": "ecl_job",         "attachment": "^Scan\\d{4}-\\d{2}-\\d{2}|^Bill_new"},
+    {"category": "kline_nomination","subject": "TENTATIVE BERTH APPLICATION|UPDATE BERTH APPLICATION"},
+    {"category": "ims_notice",      "from": "IMS-Admin@klpl", "subject": "rejected|approved|returned"},
+    {"category": "approval_reply",  "subject": "For approval:"}
+  ]
+}

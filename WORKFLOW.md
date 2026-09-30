@@ -1,9 +1,10 @@
 # Sun Orient invoicing: run procedure
 
 This is what each scheduled run follows. A run starts in a fresh workspace with no memory of earlier
-runs, so all state lives in **Gmail labels** and in the **approval email threads**.
+runs, so all state lives in the repo's `inbox/` folders, **Gmail labels** and the **approval email threads**.
 
-Mailbox: the connected Gmail (receives raymond@ and klineops@ mail via POP).
+Mailbox: the connected Gmail (receives raymond@ and klineops@ mail via POP). Attachments reach the run through
+the mail watcher (section 1), because the Gmail connector can't download them.
 Sign-off on every email: **Bob**. Never "Claude" or "invoice assistant".
 
 ## 0. Setup (every run)
@@ -26,17 +27,33 @@ Gmail labels (create if missing):
 
 ## 1. Find new work
 
-**Current mode: forwarded emails only.** Raymond forwards relevant emails, with their attachments, to
-**`sunorientray+inv@gmail.com`**. Only look at mail delivered to that address:
+**Current mode: mail watcher.** A GitHub Action (`.github/workflows/mail-watcher.yml`, rules in
+`watcher/rules.json`) checks **every email** that arrives in the Gmail inbox every 30 minutes. It saves the
+relevant ones, **with their attachments**, into this repo:
 
 ```
-deliveredto:sunorientray+inv@gmail.com -label:SOInv/Processed
+inbox/pending/<yyyymmdd-hhmm>_<category>_<subject>_<uid>/
+    meta.json      from / to / cc / subject / date / message_id / category
+    body.txt       email text (for forwards, the original sender and body are quoted here)
+    <attachments>  .xls, .pdf, .zip ... exactly as received (forwarded-as-attachment emails are unpacked)
 ```
 
-A forwarded email whose attachments are missing (e.g. a message under ~20 KB with no `.xls`/`.pdf`/`.zip`)
-can't be used. Reply to Raymond asking him to forward it again with its attachments, and label it `SOInv/Processed`.
+Categories: `kline_report`, `nt_invoice`, `ecl_job`, `kline_nomination`, `ims_notice`, `approval_reply`.
 
-What each forwarded email can be (decide from the subject, the original sender quoted in the body, and the attachments):
+1. `git pull`, then list `inbox/pending/`. If it's empty and no threads are labelled `SOInv/AwaitingApproval`
+   or `SOInv/AwaitingNT`, say so in one line and stop.
+2. Work from the files in each folder. **Don't download attachments via Gmail**; the connector can't.
+   Use Gmail only to find the thread (`rfc822msgid:<message_id>`), to label it, and to create drafts or replies.
+3. When a folder has been dealt with, `git mv` it to `inbox/done/` in the same commit as its outputs, then push.
+   Leave it in `pending/` if it's waiting on something (e.g. the Ng Terminal invoice), and say why in the report.
+4. `kline_nomination` folders are only used to find the PIC and berth details. Move them to `done/` once the vessel's invoice is drafted.
+   `ims_notice` folders (e.g. an invoice rejected in K Line's IMS portal) go straight into the report for Raymond.
+5. A folder with no usable attachments (e.g. a forward that lost them) can't be used. Say so in the report.
+
+Senders the watcher can't see (e.g. mail your server drops before it reaches Gmail) won't appear here.
+Raymond can forward those to the Gmail address and the watcher will pick them up.
+
+What each email can be (decide from the subject, the original sender in `body.txt`, and the attachments):
 
 - **K Line confirmation report / tally docs**: subject contains `Confirmation Report` or `Tally Documents`,
   from `@sunorient.com.sg` (the supervisor forwards what Ng Terminal staff send at the end of cargo ops),
@@ -71,8 +88,8 @@ What each forwarded email can be (decide from the subject, the original sender q
 The Gmail connector needs each attachment's full contents passed through the model, so keep attachments small:
 
 - **Attach**: the invoice PDF (~55 KB) and the EDI CSV (~6 KB).
-- **Don't re-attach** scans such as the signed report, tally docs or Ng Terminal invoice. Send the approval email as a
-  **reply on the forwarded thread**, so the originals are right there. Name each file in the email.
+- **Don't re-attach** scans such as the signed report, tally docs or Ng Terminal invoice. Where possible, send the approval email as a
+  **reply on the source email's thread**, so the originals are right there. Name each file in the email.
 - **Full stack PDF**: commit it to this repo under `outputs/<invoice no>/` and put the GitHub link in the email.
 
 ## 3. ECL
